@@ -1,0 +1,124 @@
+
+td {
+    /*border: 1px solid black;;*/
+    text-align: center;
+}
+
+ #profilePic {
+    border: 2px solid black;
+    align-content: center;
+}
+
+/*
+ Used to test the layout of divs
+*/
+
+/*div {*/
+/*    padding: 1px;*/
+/*    border: solid 1px silver;*/
+/*}*/
+
+#header, #footer, #menuPanel {
+    width: 100%;
+    /*top: 0;*/
+    background-color: rgba(182, 238, 255, 0.6);
+    /*padding: 10px;*/
+    color: Black;
+}
+
+#menuPanel {
+    /*margin-right: 10px;*/
+}
+
+.menu {
+    background-color: rgba(68, 255, 72, 0.6);
+}
+
+/*#footer {*/
+/*    width: 100%;*/
+/*    height: 40px;*/
+/*    color: white;*/
+/*    bottom: 0;*/
+/*    position: fixed;*/
+/*}*/
+
+#userLogin {
+    width: 110px;
+    height: 110px;
+    float: right;
+    margin-right: 10px
+
+}
+
+#center {
+    /*height: 765px;*/
+    height: 100vh;
+}
+
+
+#menuPanel {
+    max-height: 100%;
+}
+
+
+button {
+    padding: 15px 15px;
+    /*background: transparent;*/
+    border: 1px black;
+
+    border-radius: 25px;
+}
+
+
+
+.formBody{
+    border: 3px black;
+}
+
+
+.verticalMenu {
+    width: 250px;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+
+.table-striped {
+    /*font-size: 13px;*/
+}
+
+#navBar, #classList {
+    list-style-type: none;
+    padding: 0 8px;
+    background-color: rgba(182, 238, 255, 0.6);
+    text-align: center;
+}
+
+#navBar li {
+    font-size: 20px;
+    display: inline;
+    background-color: #dddddd;
+    border: 1px solid silver;
+}
+
+#navBar a {
+    padding: 20px 50px;
+}
+
+#home {
+    padding: 0 8px;
+    color: #0000bf;
+    /*font-style: italic;*/
+}
+
+#userLogin, #signUp, #signIn, #createButton, #cancelButton {
+    border: 2px solid black;
+}
+
+.signIn {
+    background-color: #00fafa;
+}
+
+.signUpButton {
+    background-color: rgba(165, 79, 255, 0.6);
+}
