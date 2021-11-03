@@ -26,6 +26,7 @@ if ($local == false) {
 
     <title>J.A.C.K Adoption</title>
 
+
     <link href="<?= $docRoot ?>/css/projectCSS.css" rel="stylesheet"/>
     <script src="<?= $docRoot ?>/js/javascript.js"></script>
     <!--    Bootstrap 5 CSS    -->
@@ -42,78 +43,79 @@ if ($local == false) {
 
 <body>
 
+<!--<div id="header" class="header">-->
+<!--    <div class="row">-->
+<!---->
+<!--        <div class="col-10">-->
+<!--            <h1 style="text-align: center">J.A.C.K Adoption</h1>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="col-2">-->
+<!--            <a href="--><?//= $docRoot ?><!--/Project/forms/login.php" role= 'button' class="btn btn-primary">Login</a>-->
+<!--            <a href="--><?//= $docRoot ?><!--/Project/profile.php" role= 'button' class="btn btn-info">Profile</a>-->
+<!--            <a href="--><?//= $docRoot ?><!--/Project/admin.php" role= 'button' class="btn btn-warning">Admin</a>-->
+<!---->
+<!---->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
 <div id="header" class="header">
     <div class="row">
 
-        <div class="col-10">
-            <h1 style="text-align: center">J.A.C.K Adoption</h1>
+
+        <div class="col-11">
+<!--            <h1 style="text-align: center">J.A.C.K Adoption</h1>-->
+            <p style="text-align: center; font-size: 70px">J.A.C.K Adoption</p>
+                       <h2 id="subtitle" class="subtitle" style="text-align: left"></h2>
         </div>
 
-        <div class="col-2">
-            <a href="<?= $docRoot ?>/Project/forms/login.php" role= 'button' class="btn btn-primary">Login</a>
-            <a href="<?= $docRoot ?>/Project/profile.php" role= 'button' class="btn btn-info">Profile</a>
-            <a href="<?= $docRoot ?>/Project/admin.php" role= 'button' class="btn btn-warning">Admin</a>
+        <div class="col-1">
+            <?php
+            if (isset($_SESSION['username'])) {
+            ?>
+            <form method="post">
+                <a href="<?= $docRoot ?>/index.php" role='button'>
+                    <button type="submit" class="btn btn-primary" id="logout" name='logout'>Logout
+                    </button>
+                </a>
 
+                <?php
+                } else { ?>
+                    <a href="<?= $docRoot ?>/Project/forms/login.php" role='button'
+                       class="btn btn-primary">Login</a>
+                    <?php
+                }
+                ?>
+
+                <?php
+                if ($_SESSION['role'] == 'Employee' || $_SESSION['role'] == 'Adopter' || $_SESSION['role'] == 'Admin') {
+                ?>
+                <a href="<?= $docRoot ?>/Project/profile.php" role='button' class="btn btn-info">Profile</a>
+                <?php
+                }
+                ?>
+
+                <?php
+                if ($_SESSION['role'] == 'Employee' || $_SESSION['role'] == 'Admin') {
+                    ?>
+                    <a href="<?= $docRoot ?>/Project/admin.php" role='button' class="btn btn-warning">Admin</a>
+
+                    <?php
+                }
+                ?>
+            </form>
 
         </div>
     </div>
 </div>
 
-
-<!--<div id="header" class="header">-->
-<!--    <div class="row">-->
-<!---->
-<!---->
-<!--        <div class="col-10">-->
-<!--            <h1 style="text-align: center">J.A.C.K Adoption</h1>-->
-<!--                       <h2 id="subtitle" class="subtitle" style="text-align: left"></h2>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="col-1">-->
-<!--            --><?php
-//            if (isset($_SESSION['username'])) {
-//            ?>
-<!--            <form method="post">-->
-<!--                <a href="--><?//= $docRoot ?><!--/index.php" role='button'>-->
-<!--                    <button type="submit" class="btn btn-primary" id="logout" name='logout'>Logout-->
-<!--                    </button>-->
-<!--                </a>-->
-<!---->
-<!--                --><?php
-//                } else { ?>
-<!--                    <a href="--><?//= $docRoot ?><!--/Project/forms/login.php" role='button'-->
-<!--                       class="btn btn-primary">Login</a>-->
-<!--                    --><?php
-//                }
-//                ?>
-<!---->
-<!--                --><?php
-//                if ($_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Student' || $_SESSION['role'] == 'Professor') {
-//                ?>
-<!--                <a href="--><?//= $docRoot ?><!--/Project/profile.php" role='button' class="btn btn-info">Profile</a>-->
-<!--                --><?php
-//                }
-//                ?>
-<!---->
-<!--                --><?php
-//                if ($_SESSION['role'] == 'Admin') {
-//                    ?>
-<!--                    <a href="--><?//= $docRoot ?><!--/Projects/Phase4/admin.php" role='button' class="btn btn-warning">Admin</a>-->
-<!---->
-<!--                    --><?php
-//                }
-//                ?>
-<!--            </form>-->
-<!---->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!---->
 <?php
-//if (isset($_POST['logout'])) {
-//    session_destroy();
-//}
-//
-//?>
+if (isset($_POST['logout'])) {
+    session_destroy();
+}
+
+?>
 
 

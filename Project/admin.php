@@ -6,9 +6,15 @@ $navBar = $path . '/includes/navigationBar.php';
 
 include $header;
 include $navBar;
-//include $menu;
 
-//var_dump($path);
+require_once '../database.php';
+
+$db = NewConnection();
+
+$sqlUser = "select * from `user`";
+
+$sqlResultsUser = $db->query($sqlUser)->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 <h1 style="text-align: center; font-size: 45px">Admin Page</h1>
@@ -28,13 +34,45 @@ include $navBar;
             <button class="btn btn-primary" type="button" style="background-color: rgba(151,0,255,0.85); font-size: 30px">Create Supply Item</button>
         </a>
 
-
     </div>
 
 </div>
+<br>
 
+<div class="container">
 
-<?php
-//$footer = $path . "/includes/projectFooter.php";
-//include $footer;
-?>
+    <table id="users" class="table table-striped">
+        <thead style="text-align: center">
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+
+            <?php
+            foreach ($sqlResultsUser
+
+            as $r) { ?>
+        <tr>
+            <td> <?php echo $r['iduser']; ?></td>
+            <td> <?php echo $r['username']; ?></td>
+            <td> <?php echo $r['email']; ?></td>
+            <td> <?php echo $r['password']; ?></td>
+            <td> <?php echo $r['role']; ?></td>
+        </tr>
+
+        <?php
+        }
+
+        ?>
+
+        </tbody>
+    </table>
+</div>
+

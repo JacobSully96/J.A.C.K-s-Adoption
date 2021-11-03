@@ -6,6 +6,10 @@ $navBar = $path . '/includes/navigationBar.php';
 
 include $header;
 include $navBar;
+
+require '../../database.php';
+$db = NewConnection();
+
 ?>
 
 <h1 style="text-align: center; font-size: 45px">Add Animal</h1>
@@ -17,8 +21,8 @@ include $navBar;
             
 
             <div class="form-group">
-                <label for="animal">Animal:</label>
-                <select id="animal" name ='animal'>
+                <label for="animalType">Animal:</label>
+                <select id="animalType" name ='animalType'>
                     <option value="Dog">Dog</option>
                     <option value="Cat">Cat</option>
                     <option value="Bird">Bird</option>
@@ -26,9 +30,9 @@ include $navBar;
             </div>
 
             <div class="form-group">
-                <label for="assignment">Animal Name:</label>
+                <label for="animalName">Animal Name:</label>
                 <br>
-                <input type="text" id="animal" placeholder="animal Name" name="animal">
+                <input type="text" id="animal" placeholder="animal Name" name="animalName">
             </div>
 
             <div class="form-group">
@@ -41,6 +45,12 @@ include $navBar;
                 <label for="weight">Weight:</label>
                 <br>
                 <input type="text" id="weight" placeholder="weight" name="weight">
+            </div>
+
+            <div class="form-group">
+                <label for="WingSpan">Wing Span (Inches) (Birds Only):</label>
+                <br>
+                <input type="text" id="WingSpan" placeholder="WingSpan" name="WingSpan">
             </div>
 
             <div class="form-group">
@@ -66,4 +76,33 @@ include $navBar;
 
     </div>
 </div>
+
+<?php
+
+$animalType = $_POST['animalType'];
+$name = $_POST['animalName'];
+$breed = $_POST['Breed'];
+$weight = $_POST['weight'];
+$wingspan = $_POST['WingSpan'];
+$DOB = $_POST['birthdate'];
+
+if(isset($_POST['addAnimal'])){
+    if($animalType == "Dog"){
+        $sql = "INSERT INTO `dog`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `shots`) 
+VALUES ('$animalType','$name','$DOB','$breed','$weight','1')";
+        $db->query($sql);
+
+    }else if($animalType == "Cat"){
+        $sql = "INSERT INTO `cat`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `shots`) 
+VALUES ('$animalType','$name','$DOB','$breed','$weight','1')";
+        $db->query($sql);
+
+    }else if($animalType == "Bird"){
+        $sql = "INSERT INTO `bird`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `wingspan`, `shots`) 
+VALUES ('$animalType','$name','$DOB','$breed','$weight', '$wingspan','1')";
+        $db->query($sql);
+    }
+
+}
+?>
 

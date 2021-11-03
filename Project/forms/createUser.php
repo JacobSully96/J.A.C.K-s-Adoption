@@ -11,6 +11,9 @@ include $navBar;
 //include $menu;
 //var_dump($path);
 
+require '../../database.php';
+$db = NewConnection();
+
 ?>
 
 <h1 style="text-align: center; font-size: 45px">Create User</h1>
@@ -57,10 +60,26 @@ include $navBar;
 
 
         <br>
-        <a href=" <?= $docRoot ?>/Project/home.php" class="login">
+        <a href="/Project/home.php" class="login">
             <button type="submit" style="background-color: rgba(255,17,12,0.6)" class="btn" id="cancelButton">Cancel
             </button>
         </a>
 
     </div>
 </div>
+
+<?php
+
+$role = $_POST['role'];
+$username = $_POST['username'];
+$email = $_POST['Email'];
+$password = $_POST['password'];
+
+$sql = "INSERT INTO `user` (`username`, `email`,`password`, `role`) 
+VALUES ('$username', '$email', '$password' ,'$role')";
+
+
+if(isset($_POST['createUser'])){
+    $db->query($sql);
+}
+?>

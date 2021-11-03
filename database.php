@@ -5,7 +5,7 @@
 function NewConnection()
 {
 //    $connection = new mysqli("localhost", 'ics325su2115', "8348", 'ics325su2115');
-    $connection = new mysqli("localhost", 'root', "", 'mySite');
+    $connection = new mysqli("localhost", 'root', "", 'jackSite');
 
     if ($connection->connect_errno) {
         echo "Failed to connect to MySQL: " . $connection->connect_error;

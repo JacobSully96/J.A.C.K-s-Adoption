@@ -6,6 +6,9 @@ $navBar = $path . '/includes/navigationBar.php';
 
 include $header;
 include $navBar;
+
+require '../../database.php';
+$db = NewConnection();
 ?>
 
 <h1 style="text-align: center; font-size: 45px">Create Supply Item</h1>
@@ -16,14 +19,14 @@ include $navBar;
         <form method="post" class="form-horizontal">
 
             <div class="form-group">
-                <label for="assignment">Supply Name:</label>
+                <label for="supplyName">Supply Name:</label>
                 <br>
-                <input type="text" id="supply" placeholder="Supply Name" name="supply">
+                <input type="text" id="supply" placeholder="Supply Name" name="supplyName">
             </div>
 
             <div class="form-group">
-                <label for="supply">Type:</label>
-                <select id="supply" name ='supply'>
+                <label for="supplyType">Type:</label>
+                <select id="supplyType" name ='supplyType'>
                     <option value="Food">Food</option>
                     <option value="Medicine">Medicine</option>
                     <option value="Toy">Toy</option>
@@ -31,20 +34,27 @@ include $navBar;
             </div>
 
             <div class="form-group">
-                <label for="animal">Animal:</label>
-                <select id="animal" name ='animal'>
-                    <option value="Dog">Dog</option>
-                    <option value="Cat">Cat</option>
-                    <option value="Bird">Bird</option>
+                <label for="animalType">Animal:</label>
+                <select id="animalType" name ='animalType'>
+                    <option value="K-9">Dog</option>
+                    <option value="Feline">Cat</option>
+                    <option value="Aves">Bird</option>
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="qty">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="quantity">
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price Each:</label>
+                <input type="number" id="price" name="price" value="price">
+            </div>
 
             <button type="submit" style="background-color: rgba(255,242,43,0.85); width: 100%" id="createButton" name="createSupply"
                     class="btn btn-default">Create Supply Item
-</button>
-
-            <!--                        <button type="submit" style="background-color: rgba(27,255,20,0.6)" class="btn" id="createButton">Create</button>-->
+            </button>
 
         </form>
 
@@ -57,3 +67,19 @@ include $navBar;
 
     </div>
 </div>
+
+<?php
+$name = $_POST['supplyName'];
+$supplyType = $_POST["supplyType"];
+$animalType = $_POST['animalType'];
+$qty = $_POST['quantity'];
+$priceEach = $_POST['price'];
+
+$sql = "INSERT INTO `supplylist`( `idsupplyList`,`animalType`, `supplyType`, `supplyName`, `qty`, `pricePerUnit`) 
+VALUES (NULL, '$animalType', '$supplyType', '$name', '$qty', '$priceEach')";
+
+if(isset($_POST['createSupply'])){
+    $db->query($sql);
+}
+
+?>
