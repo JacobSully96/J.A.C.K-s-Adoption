@@ -10,6 +10,14 @@ include $navBar;
 require '../../database.php';
 $db = NewConnection();
 
+$sqlDog = "select * from dog";
+$sqlCat = "select * from cat";
+$sqlBird = "select * from bird";
+
+$resultsDog = $db->query($sqlDog)->fetch_all(MYSQLI_ASSOC);
+$resultsCat = $db->query($sqlCat)->fetch_all(MYSQLI_ASSOC);
+$resultsBird = $db->query($sqlBird)->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 <h1 style="text-align: center; font-size: 45px">Add Animal</h1>
@@ -18,11 +26,11 @@ $db = NewConnection();
 <div class="container">
     <div class="d-flex flex-column justify-content-center align-items-center">
         <form method="post" class="form-horizontal">
-            
+
 
             <div class="form-group">
                 <label for="animalType">Animal:</label>
-                <select id="animalType" name ='animalType'>
+                <select id="animalType" name='animalType'>
                     <option value="Dog">Dog</option>
                     <option value="Cat">Cat</option>
                     <option value="Bird">Bird</option>
@@ -59,7 +67,18 @@ $db = NewConnection();
                 <input type="date" id="birthdate" name="birthdate">
             </div>
 
-            <button type="submit" style="background-color: rgba(255,242,43,0.85); width: 100%" id="createButton" name="addAnimal"
+            <div class="form-group">
+                Has animals been given shots/vaccinated?
+                <br>
+                <input type="radio" id="shots" name="shots" value="1">
+                <label for="shots">Yes</label>
+                <br>
+                <input type="radio" id="shots" name="shots" value="0">
+                <label for="shots">No</label>
+            </div>
+
+            <button type="submit" style="background-color: rgba(255,242,43,0.85); width: 100%" id="createButton"
+                    name="addAnimal"
                     class="btn btn-default">Add Animal
             </button>
 
@@ -85,24 +104,26 @@ $breed = $_POST['Breed'];
 $weight = $_POST['weight'];
 $wingspan = $_POST['WingSpan'];
 $DOB = $_POST['birthdate'];
+$shots = $_POST['shots'];
 
-if(isset($_POST['addAnimal'])){
-    if($animalType == "Dog"){
-        $sql = "INSERT INTO `dog`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `shots`) 
-VALUES ('$animalType','$name','$DOB','$breed','$weight','1')";
+if (isset($_POST['addAnimal'])) {
+    if ($animalType == "Dog") {
+        $sql = "INSERT INTO `dog`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `shots`)
+VALUES ('$animalType','$name','$DOB','$breed','$weight','$shots')";
         $db->query($sql);
 
-    }else if($animalType == "Cat"){
-        $sql = "INSERT INTO `cat`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `shots`) 
-VALUES ('$animalType','$name','$DOB','$breed','$weight','1')";
+    } else if ($animalType == "Cat") {
+        $sql = "INSERT INTO `cat`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `shots`)
+VALUES ('$animalType','$name','$DOB','$breed','$weight','$shots')";
         $db->query($sql);
 
-    }else if($animalType == "Bird"){
-        $sql = "INSERT INTO `bird`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `wingspan`, `shots`) 
-VALUES ('$animalType','$name','$DOB','$breed','$weight', '$wingspan','1')";
+    } else if ($animalType == "Bird") {
+        $sql = "INSERT INTO `bird`(`animalType`, `name`, `birthdate`, `breed`, `weight`, `wingspan`, `shots`)
+VALUES ('$animalType','$name','$DOB','$breed','$weight', '$wingspan','$shots')";
         $db->query($sql);
     }
 
 }
+
 ?>
 

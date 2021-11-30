@@ -22,6 +22,11 @@ $resultsSupplyList = $db->query($sqlSupplyList)->fetch_all(MYSQLI_ASSOC);
 
 <div class="container">
 
+    <form action="/Project/searchSupplies.php">
+        <input type="text" placeholder="Search.." name="search" >
+        <button type="submit" >Search</button>
+    </form>
+
     <table id="supplyList" class="table table-striped">
         <thead style="text-align: center">
         <tr>
@@ -62,9 +67,19 @@ $resultsSupplyList = $db->query($sqlSupplyList)->fetch_all(MYSQLI_ASSOC);
             <td><a href="/Project/forms/updateSupplyItem.php?editSupply=<?php echo $r['idsupplyList']; ?>">
                     <button class="btn btn-info" type="button">Edit</button>
                 </a></td>
-            <td><a href="/Project/supplies.php?deleteSupply=<?php echo $r['idsupplyList']; ?>"
+            <td><a href="/Project/supplies.php?deleteSupply=<?php echo $r['idsupplyList']; ?>"  onclick="return confirm('Are you sure you want to delete this item?');"
                    class="btn btn-danger">Delete</td>
             <?php
+            }
+            ?>
+
+            <?php
+            if ($_SESSION['role'] == 'Adopter') {
+                ?>
+                <td><a href="/Project/forms/transaction.php?addToCart=<?php echo $r['idsupplyList']; ?>">
+                        <button class="btn btn-info" type="button">Add to cart</button>
+                    </a></td>
+                <?php
             }
             ?>
 
@@ -89,6 +104,11 @@ if (isset($_GET['deleteSupply'])) {
     $db->query($delBird);
 }
 
+if (isset($_GET['search'])) {
+    $search = $_GET['search'];
+    $searchSupply = "Select * FROM `supplyList` WHERE `supplyList`.`supplyName` LIKE '$search%'";
+    $db->query($searchSupply);
+}
 
 
 ?>

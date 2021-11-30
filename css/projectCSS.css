@@ -13,7 +13,7 @@ td {
  Used to test the layout of divs
 */
 
-/*div {*/
+/*div, table, td, tr {*/
 /*    padding: 1px;*/
 /*    border: solid 1px silver;*/
 /*}*/

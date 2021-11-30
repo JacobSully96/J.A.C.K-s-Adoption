@@ -9,6 +9,12 @@ include $navBar;
 
 require '../../database.php';
 $db = NewConnection();
+
+$currentSuppliesSql = "select * from supplyList";
+
+$currentSupplies = $db->query($currentSuppliesSql)->fetch_all(MYSQLI_ASSOC);
+
+
 ?>
 
 <h1 style="text-align: center; font-size: 45px">Create Supply Item</h1>
@@ -75,11 +81,34 @@ $animalType = $_POST['animalType'];
 $qty = $_POST['quantity'];
 $priceEach = $_POST['price'];
 
-$sql = "INSERT INTO `supplylist`( `idsupplyList`,`animalType`, `supplyType`, `supplyName`, `qty`, `pricePerUnit`) 
+//$sql = "INSERT INTO `supplylist`( `idsupplyList`,`animalType`, `supplyType`, `supplyName`, `qty`, `pricePerUnit`)
+//VALUES (NULL, '$animalType', '$supplyType', '$name', '$qty', '$priceEach')";
+//
+//if(isset($_POST['createSupply'])){
+//    $db->query($sql);
+//}
+
+$duplicateCount = 0;
+
+foreach ($currentSupplies as $cs){
+
+    if($animalType == $cs['animalType'] && $supplyType == $cs['supplyType'] &&
+        $name == $cs['supplyName'] && $qty == $cs['qty'] &&
+        $priceEach == $cs['pricePerUnit']){
+
+        $duplicateCount++;
+        echo "<h2 style='text-align: center; color: rgba(255,0,11,0.85)'><b>Exact entry already exists</b></h2>";
+    }
+}
+
+if($duplicateCount == 0){
+    $sql = "INSERT INTO `supplylist`( `idsupplyList`,`animalType`, `supplyType`, `supplyName`, `qty`, `pricePerUnit`) 
 VALUES (NULL, '$animalType', '$supplyType', '$name', '$qty', '$priceEach')";
 
-if(isset($_POST['createSupply'])){
-    $db->query($sql);
+    if(isset($_POST['createSupply'])){
+        $db->query($sql);
+    }
 }
+
 
 ?>

@@ -60,7 +60,7 @@ $db = NewConnection();
             </div>
 
             <button type="submit" style="background-color: rgba(27,255,20,0.6); width: 100%" id="createButton" name="signup"
-                    class="btn btn-default">Create
+                    class="btn btn-default">Create Account
             </button>
 
 
