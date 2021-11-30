@@ -27,6 +27,16 @@ $resultsSupplyList = $db->query($sqlSupplyList)->fetch_all(MYSQLI_ASSOC);
         <button type="submit" >Search</button>
     </form>
 
+<!--    --><?php
+//    if ($_SESSION['role'] == 'Adopter') {
+//        ?>
+<!--        <td><a href="/Project/forms/transaction.php">-->
+<!--                <button class="btn btn-warning" type="button">Cart</button>-->
+<!--            </a></td>-->
+<!--        --><?php
+//    }
+//    ?>
+
     <table id="supplyList" class="table table-striped">
         <thead style="text-align: center">
         <tr>
@@ -73,17 +83,6 @@ $resultsSupplyList = $db->query($sqlSupplyList)->fetch_all(MYSQLI_ASSOC);
             }
             ?>
 
-            <?php
-            if ($_SESSION['role'] == 'Adopter') {
-                ?>
-                <td><a href="/Project/forms/transaction.php?addToCart=<?php echo $r['idsupplyList']; ?>">
-                        <button class="btn btn-info" type="button">Add to cart</button>
-                    </a></td>
-                <?php
-            }
-            ?>
-
-
         </tr>
 
         <?php
@@ -93,6 +92,8 @@ $resultsSupplyList = $db->query($sqlSupplyList)->fetch_all(MYSQLI_ASSOC);
 
         </tbody>
     </table>
+
+
 </div>
 
 

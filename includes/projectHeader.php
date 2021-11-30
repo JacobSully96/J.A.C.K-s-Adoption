@@ -89,13 +89,13 @@ if ($local == false) {
                 }
                 ?>
 
-                <?php
-                if ($_SESSION['role'] == 'Employee' || $_SESSION['role'] == 'Adopter' || $_SESSION['role'] == 'Admin') {
-                ?>
-                <a href="<?= $docRoot ?>/Project/profile.php" role='button' class="btn btn-info">Profile</a>
-                <?php
-                }
-                ?>
+<!--                --><?php
+//                if ($_SESSION['role'] == 'Employee' || $_SESSION['role'] == 'Adopter' || $_SESSION['role'] == 'Admin') {
+//                ?>
+<!--                <a href="--><?//= $docRoot ?><!--/Project/profile.php" role='button' class="btn btn-info">Profile</a>-->
+<!--                --><?php
+//                }
+//                ?>
 
                 <?php
                 if ($_SESSION['role'] == 'Employee' || $_SESSION['role'] == 'Admin') {

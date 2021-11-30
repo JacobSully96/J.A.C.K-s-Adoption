@@ -34,6 +34,7 @@ $name = $current['name'];
 $breed = $current['breed'];
 $weight = $current['weight'];
 $DOB = $current['birthdate'];
+$shots = $current['shots'];
 
 
 ?>
@@ -80,6 +81,16 @@ $DOB = $current['birthdate'];
                 <input type="date" id="birthdate" value= "<?php echo $DOB?>" name="birthdate">
             </div>
 
+            <div class="form-group">
+                Has animals been given shots/vaccinated?
+                <br>
+                <input type="radio" id="shots" name="shots" value="1">
+                <label for="shots">Yes</label>
+                <br>
+                <input type="radio" id="shots" name="shots" value="0">
+                <label for="shots">No</label>
+            </div>
+
             <button type="submit" style="background-color: rgba(255,242,43,0.85); width: 100%" id="createButton" name="updateDog"
                     class="btn btn-default">Update Dog
             </button>
@@ -107,8 +118,9 @@ if(isset($_POST['updateDog'])) {
     $breed = $_POST['Breed'];
     $weight = $_POST['weight'];
     $DOB = $_POST['birthdate'];
+    $shots = $_POST['shots'];
 
-    $update = "UPDATE `dog` SET `name`='$name',`birthdate`='$DOB',`breed`='$breed',`weight`='$weight',`shots`='1'
+    $update = "UPDATE `dog` SET `name`='$name',`birthdate`='$DOB',`breed`='$breed',`weight`='$weight',`shots`='$shots'
     WHERE `dog`.`iddog` = '$id'";
 
     $db->query($update);

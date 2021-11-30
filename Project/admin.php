@@ -105,9 +105,9 @@ $searchUserResults = $db->query($searchUser)->fetch_all(MYSQLI_ASSOC);
             <td> <?php echo $r['email']; ?></td>
             <td> <?php echo $r['password']; ?></td>
             <td> <?php echo $r['role']; ?></td>
-<!--            <td><a href="/Project/admin.php?editUser=--><?php //echo $r['iduser']; ?><!--">-->
-<!--                    <button class="btn btn-info" type="button">Edit</button>-->
-<!--                </a></td>-->
+            <td><a href="forms/updateUser.php?updateUser=<?php echo $r['iduser']; ?>">
+                    <button class="btn btn-info" type="button">Edit</button>
+                </a></td>
             <td><a href="/Project/admin.php?deleteUser=<?php echo $r['iduser']; ?>" onclick="return confirm('Are you sure you want to delete this item?');"
                    class="btn btn-danger">Delete</a></td>
         </tr>

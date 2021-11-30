@@ -80,6 +80,16 @@ $DOB = $current['birthdate'];
                 <input type="date" id="birthdate" value= "<?php echo $DOB?>" name="birthdate">
             </div>
 
+            <div class="form-group">
+                Has animals been given shots/vaccinated?
+                <br>
+                <input type="radio" id="shots" name="shots" value="1">
+                <label for="shots">Yes</label>
+                <br>
+                <input type="radio" id="shots" name="shots" value="0">
+                <label for="shots">No</label>
+            </div>
+
             <button type="submit" style="background-color: rgba(255,242,43,0.85); width: 100%" id="createButton" name="updateCat"
                     class="btn btn-default">Update Cat
             </button>
@@ -107,8 +117,9 @@ if(isset($_POST['updateCat'])) {
     $breed = $_POST['Breed'];
     $weight = $_POST['weight'];
     $DOB = $_POST['birthdate'];
+    $shots = $_POST['shots'];
 
-    $update = "UPDATE `Cat` SET `name`='$name',`birthdate`='$DOB',`breed`='$breed',`weight`='$weight',`shots`='1'
+    $update = "UPDATE `Cat` SET `name`='$name',`birthdate`='$DOB',`breed`='$breed',`weight`='$weight',`shots`='$shots'
     WHERE `Cat`.`idCat` = '$id'";
 
     $db->query($update);

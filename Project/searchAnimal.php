@@ -12,14 +12,13 @@ require_once '../database.php';
 $db = NewConnection();
 
 $search = $_GET['search'];
-$searchDog = "Select * FROM `dog` WHERE `dog`.`name` LIKE '$search%'";
-$searchCat = "Select * FROM `cat` WHERE `cat`.`name` LIKE '$search%';";
-$searchBird = "Select * FROM `bird` WHERE `bird`.`name` LIKE '$search%'";
+$searchDog = "Select * FROM `dog` WHERE `dog`.`name` LIKE '$search%' OR `dog`.`breed` LIKE '$search%' OR `dog`.`animalType` LIKE '$search%'";
+$searchCat = "Select * FROM `cat` WHERE `cat`.`name` LIKE '$search%' OR `cat`.`breed` LIKE '$search%' OR `cat`.`animalType` LIKE '$search%';";
+$searchBird = "Select * FROM `bird` WHERE `bird`.`name` LIKE '$search%' OR `bird`.`breed` LIKE '$search%' OR `bird`.`animalType` LIKE '$search%'";
 
 $resultsDog = $db->query($searchDog)->fetch_all(MYSQLI_ASSOC);
 $resultsCat = $db->query($searchCat)->fetch_all(MYSQLI_ASSOC);
 $resultsBird = $db->query($searchBird)->fetch_all(MYSQLI_ASSOC);
-
 
 ?>
 

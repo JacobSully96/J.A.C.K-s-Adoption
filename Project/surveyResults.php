@@ -338,14 +338,6 @@ $surveyResults = $db->query($sqlSort)->fetch_all(MYSQLI_ASSOC);
                 <td> <?php echo $sr['animalName']; ?></td>
                 <td> <?php echo $sr['animalType']; ?></td>
                 <td> <?php echo $sr['animalBreed']; ?></td>
-                <?php
-                if($_SESSION['role'] == 'Adopter'){
-                    ?>
-                    <td><a href="/Project/forms/adoptionForm.php?adoptBird=<?php echo $sr['iddog']; ?>" onclick="return confirm('Are you sure you want to adopt this pet?');"
-                           class="btn btn-info">Adopt</td>
-                    <?php
-                }
-                ?>
 
             </tr>
 

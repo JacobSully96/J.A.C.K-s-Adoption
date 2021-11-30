@@ -170,7 +170,7 @@ $resultsBird = $db->query($sqlBird)->fetch_all(MYSQLI_ASSOC);
                     <td><a href="/Project/animals.php?deleteCat=<?php echo $r['idcat']; ?>" onclick="return confirm('Are you sure you want to delete this item?');"
                            class="btn btn-danger">Delete</td>
                     <?php
-                } else if($_SESSION['role'] == 'Adopter') {
+                } else if($_SESSION['role'] == 'Adopter' && $r['adoptedStatus'] == 0) {
                     ?>
                     <td><a href="/Project/forms/adoptionForm.php?adoptCat=<?php echo $r['idcat']; ?>" onclick="return confirm('Are you sure you want to adopt this pet?');"
                            class="btn btn-info">Adopt</td>
@@ -248,7 +248,7 @@ $resultsBird = $db->query($sqlBird)->fetch_all(MYSQLI_ASSOC);
                     <td><a href="/Project/animals.php?deleteBird=<?php echo $r['idbird']; ?>" onclick="return confirm('Are you sure you want to delete this item?');"
                            class="btn btn-danger">Delete</a></td>
                     <?php
-                } else if($_SESSION['role'] == 'Adopter'){
+                } else if($_SESSION['role'] == 'Adopter' && $r['adoptedStatus'] == 0){
                     ?>
                     <td><a href="/Project/forms/adoptionForm.php?adoptBird=<?php echo $r['idbird']; ?>" onclick="return confirm('Are you sure you want to adopt this pet?');"
                            class="btn btn-info">Adopt</td>
@@ -290,10 +290,10 @@ if (isset($_GET['deleteDog'])) {
     $db->query($delDog);
 }
 
-if (isset($_GET['search'])) {
-    $search = $_GET['search'];
-    $searchDog = "Select * FROM `dog` WHERE `dog`.`name` LIKE '$search%'";
-    $db->query($searchDog);
-}
+//if (isset($_GET['search'])) {
+//    $search = $_GET['search'];
+//    $searchDog = "Select * FROM `dog` WHERE `dog`.`name` LIKE '$search%'";
+//    $db->query($searchDog);
+//}
 
 ?>

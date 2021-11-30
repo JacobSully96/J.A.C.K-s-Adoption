@@ -103,7 +103,7 @@ if ($username == $results['username'] && $pw == $results['password']) {
     $db->query($updateBirdStatus);
 
 } else {
-    echo "<h3 style='text-align: center; color: rgba(255,0,11,0.85)'> <b><i>Error wrong username, password or email </i></b></h3>";
+    echo "<h3 style='text-align: center; color: rgba(255,0,11,0.85)'> <b><i>Error wrong username or password </i></b></h3>";
 }
 
 
