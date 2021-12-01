@@ -14,6 +14,10 @@ include $navBar;
 require '../../database.php';
 $db = NewConnection();
 
+$currentUserSql = "select * from user";
+
+$currentUser = $db->query($currentUserSql)->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 <h1 style="text-align: center; font-size: 45px">Create User</h1>
@@ -75,11 +79,33 @@ $username = $_POST['username'];
 $email = $_POST['Email'];
 $password = $_POST['password'];
 
-$sql = "INSERT INTO `user` (`username`, `email`,`password`, `role`) 
+//$sql = "INSERT INTO `user` (`username`, `email`,`password`, `role`)
+//VALUES ('$username', '$email', '$password' ,'$role')";
+//
+//
+//if(isset($_POST['createUser'])){
+//    $db->query($sql);
+//}
+
+$duplicateCount = 0;
+
+foreach ($currentUser as $cs){
+
+    if($role == $cs['role'] && $username == $cs['username'] &&
+        $email == $cs['email'] ){
+
+        $duplicateCount++;
+        echo "<h2 style='text-align: center; color: rgba(255,0,11,0.85)'><b>User already exists</b></h2>";
+    }
+}
+
+if($duplicateCount == 0){
+    $sql = "INSERT INTO `user` (`username`, `email`,`password`, `role`) 
 VALUES ('$username', '$email', '$password' ,'$role')";
 
-
-if(isset($_POST['createUser'])){
-    $db->query($sql);
+    if(isset($_POST['createUser'])){
+        $db->query($sql);
+    }
 }
+
 ?>

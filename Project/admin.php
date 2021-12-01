@@ -14,12 +14,10 @@ $db = NewConnection();
 $search = $_GET['search'];
 
 $sqlUser = "select * from `user`";
-$searchUser = "Select * FROM `user` WHERE `user`.`username` LIKE '$search%'";
-//$searchEmail = "Select * FROM `user` WHERE `user`.`email` LIKE '$search%'";
+$searchUser = "Select * FROM `user` WHERE `user`.`username` LIKE '$search%' OR `user`.`email` LIKE '$search%'";
 
 $sqlResultsUser = $db->query($sqlUser)->fetch_all(MYSQLI_ASSOC);
 $searchUserResults = $db->query($searchUser)->fetch_all(MYSQLI_ASSOC);
-//$searchEmailResults = $db->query($searchEmail)->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
